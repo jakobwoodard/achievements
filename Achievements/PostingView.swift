@@ -9,7 +9,8 @@ import SwiftUI
 import Firebase
 
 struct PostingView: View {
-    @State var postText:String
+    @State var postText: String
+    @State var isPresentingAlert: Bool = false
     @EnvironmentObject var firestoreManager: FirebaseManager
     
     var body: some View {
@@ -21,16 +22,18 @@ struct PostingView: View {
             Button(action: sendPost) {
                 Text("Post")
             }
+            .alert("Posted", isPresented: $isPresentingAlert) {
+            }
         }
     }
     
     func sendPost() {
         let db = Firestore.firestore()
         
-        let docRef = db.collection("Posts").document("Test User")
+        let docRef = db.collection("Posts").document()
         let docData: [String:Any] = [
             "post": postText,
-            "dateAdded": Timestamp(date: Date()),
+            "dateAdded": (Date().formatted()),
             "user": "User1"
         ]
         docRef.setData(docData) { error in
@@ -38,6 +41,8 @@ struct PostingView: View {
                 print("Error posting", error)
             }
             else {
+                isPresentingAlert = true
+                postText = ""
                 print("Posted")
             }
         }

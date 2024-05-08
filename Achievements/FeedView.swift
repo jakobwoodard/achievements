@@ -10,39 +10,41 @@ import Firebase
 import FirebaseFirestore
 
 struct FeedView: View {
-    @State var posts = [Post]()
+    @ObservedObject var postsGetter = PostsGetter()
     var body: some View {
         VStack {
-            Text(posts[0].text)
+            ForEach(postsGetter.posts) { post in
+                PostView(post: post)
+            }
         }
-        .onAppear {
-            getPosts { posts in
-                self.posts = posts
+        .task {
+            do {
+                await postsGetter.get()
+                // print(postsGetter.posts)
             }
         }
     }
     
-    
-    
-    func getPosts(completionHanlder: ([Post]) -> Void) {
-        let db = Firestore.firestore()
-        db.collection("Posts").getDocuments() { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting posts: \(error)")
-            }
-            else {
-                for document in querySnapshot!.documents {
-                    let newPost = Post(text: document.data()["text"] as? String ?? "",
-                                       user: document.data()["user"] as? String ?? "",
-                                       datePosted: document.data()["dateAdded"] as? String ?? "")
-                    self.posts.append(newPost)
+    @MainActor
+    class PostsGetter: ObservableObject {
+        @Published var posts = [Post]()
+        
+        func get() async {
+            let db = Firestore.firestore()
+            do {
+                let querySnapshot = try await db.collection("Posts").getDocuments()
+                for doc in querySnapshot.documents {
+                    posts.append(Post(text: doc.data()["post"] as! String, user: doc.data()["user"] as! String, datePosted: doc.data()["dateAdded"] as! String))
                 }
             }
+            catch {
+                print("Error getting documents: \(error)")
+            }
         }
-        completionHanlder(posts)
+        
     }
 }
 
 #Preview {
-    FeedView(posts: [Post.samplePost])
+    FeedView()
 }

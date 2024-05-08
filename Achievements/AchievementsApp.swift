@@ -28,6 +28,7 @@ struct AchievementsApp: App {
         WindowGroup {
             NavigationView {
 //                ContentView().environmentObject(firestoreManager)
+//                PostingView(postText: "")
                 FeedView()
             }
         }
