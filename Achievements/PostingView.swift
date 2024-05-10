@@ -14,17 +14,21 @@ struct PostingView: View {
     @EnvironmentObject var firestoreManager: FirebaseManager
     
     var body: some View {
-        VStack {
+        NavigationStack {
             Form {
+                // TODO: Implement custom TextView class to have multi-line
+                // text prompt
                 TextField(text: $postText, prompt: Text("Required")) {
-                    }
+                }
             }
-            Button(action: sendPost) {
-                Text("Post")
-            }
-            .alert("Posted", isPresented: $isPresentingAlert) {
+            .toolbar {
+                Button(action: sendPost, label: {
+                    Text("Post")
+                })
             }
         }
+        
+        
     }
     
     func sendPost() {
@@ -33,6 +37,8 @@ struct PostingView: View {
         let docRef = db.collection("Posts").document()
         let docData: [String:Any] = [
             "post": postText,
+            // TODO: Figure out better way to store time so it can be sorted
+            // to make feed chronological
             "dateAdded": (Date().formatted()),
             "user": "User1"
         ]

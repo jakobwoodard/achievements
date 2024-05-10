@@ -12,16 +12,28 @@ import FirebaseFirestore
 struct FeedView: View {
     @ObservedObject var postsGetter = PostsGetter()
     var body: some View {
-        VStack {
-            ForEach(postsGetter.posts) { post in
-                PostView(post: post)
+        NavigationStack {
+            List(postsGetter.posts) { post in
+                // TODO: Make better view for destination of post
+                NavigationLink(destination: PostView(post: post)) {
+                    PostView(post: post)
+                }
             }
-        }
-        .task {
-            do {
-                await postsGetter.get()
-                // print(postsGetter.posts)
+            .navigationTitle("Achievements")
+            .toolbar {
+                NavigationLink(destination: PostingView(postText: "")) {
+                    Text("Post")
+                }
+                .buttonStyle(.bordered)
+                .accessibilityLabel("Post new achievement")
             }
+            .task {
+                do {
+                    await postsGetter.get()
+                    // print(postsGetter.posts)
+                }
+            }
+            
         }
     }
     
@@ -30,6 +42,8 @@ struct FeedView: View {
         @Published var posts = [Post]()
         
         func get() async {
+            // clear array so no dup posts
+            posts = []
             let db = Firestore.firestore()
             do {
                 let querySnapshot = try await db.collection("Posts").getDocuments()
