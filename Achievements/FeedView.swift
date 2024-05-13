@@ -26,7 +26,6 @@ struct FeedView: View {
                     .padding(.horizontal, 3)
                 }
             }
-                
             .navigationTitle("Achievements")
             .toolbar {
                 NavigationLink(destination: PostingView(postText: "")) {
@@ -54,9 +53,9 @@ struct FeedView: View {
             posts = []
             let db = Firestore.firestore()
             do {
-                let querySnapshot = try await db.collection("Posts").getDocuments()
+                let querySnapshot = try await db.collection("Posts").order(by: "dateNumeric", descending: true).getDocuments()
                 for doc in querySnapshot.documents {
-                    posts.append(Post(text: doc.data()["post"] as! String, user: doc.data()["user"] as! String, datePosted: doc.data()["dateAdded"] as! String))
+                    posts.append(Post(text: doc.data()["post"] as! String, user: doc.data()["user"] as! String, datePosted: doc.data()["dateFormatted"] as! String))
                 }
             }
             catch {

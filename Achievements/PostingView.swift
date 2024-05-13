@@ -11,6 +11,7 @@ import Firebase
 struct PostingView: View {
     @State var postText: String
     @State var isPresentingAlert: Bool = false
+    @State var alertMsg: String = "Posted"
     @EnvironmentObject var firestoreManager: FirebaseManager
     
     var body: some View {
@@ -22,7 +23,7 @@ struct PostingView: View {
                 }
             }
             .alert(isPresented: $isPresentingAlert, content: {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Alert(title: Text("Alert"))/*@END_MENU_TOKEN@*/
+                Alert(title: Text(alertMsg))
             })
             .toolbar {
                 Button(action: sendPost, label: {
@@ -34,25 +35,38 @@ struct PostingView: View {
         
     }
     
+    // Sends the post to Firebase "Posts" Collection
     func sendPost() {
-        let db = Firestore.firestore()
         
-        let docRef = db.collection("Posts").document()
-        let docData: [String:Any] = [
-            "post": postText,
-            // TODO: Figure out better way to store time so it can be sorted
-            // to make feed chronological
-            "dateAdded": (Date().formatted()),
-            "user": "User1"
-        ]
-        docRef.setData(docData) { error in
-            if let error = error {
-                print("Error posting", error)
-            }
-            else {
-                isPresentingAlert = true
-                postText = ""
-                print("Posted")
+        // Error handle the Post
+        if (postText.isEmpty || postText == "") {
+            alertMsg = "Post can't be blank"
+            print("Error: Post was blank")
+            return
+        }
+        
+        // If valid, try to send
+        else {
+            let db = Firestore.firestore()
+            
+            let docRef = db.collection("Posts").document()
+            let docData: [String:Any] = [
+                "post": postText,
+                // TODO: Figure out better way to store time so it can be sorted
+                // to make feed chronological
+                "dateNumeric": Date().timeIntervalSince1970,
+                "dateFormatted": (Date().formatted(date: .numeric, time: .shortened)),
+                "user": "User1"
+            ]
+            docRef.setData(docData) { error in
+                if let error = error {
+                    print("Error posting", error)
+                }
+                else {
+                    isPresentingAlert = true
+                    postText = ""
+                    print("Posted")
+                }
             }
         }
     }
@@ -60,7 +74,7 @@ struct PostingView: View {
 }
 
 #Preview {
-    PostingView(postText: "").environmentObject(FirebaseManager())
+    PostingView(postText: "", alertMsg: "").environmentObject(FirebaseManager())
 }
 
 

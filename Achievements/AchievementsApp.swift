@@ -27,9 +27,8 @@ struct AchievementsApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-//                ContentView().environmentObject(firestoreManager)
-//                PostingView(postText: "")
-                FeedView()
+                ContentView().environmentObject(firestoreManager)
+                // TODO: Launch to login page, authenticate with Firebase
             }
         }
     }

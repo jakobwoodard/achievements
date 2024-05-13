@@ -9,9 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var firestoreManager: FirebaseManager
+    @State var selectedTab: Int = 0 // 0 means home/feed
+
     var body: some View {
-        Text("My restaurant:")
-                .padding()
+        TabView(selection: $selectedTab) {
+            FeedView()
+                .tabItem {
+                    Text("Feed")
+                }
+            .tag(0)
+            AccountView()
+                .tabItem {
+                    Label("Account", systemImage: "person.crop.circle.fill")
+                }
+            .tag(1)
+        }
     }
 }
 
