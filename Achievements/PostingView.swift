@@ -21,6 +21,9 @@ struct PostingView: View {
                 TextField(text: $postText, prompt: Text("Required")) {
                 }
             }
+            .alert(isPresented: $isPresentingAlert, content: {
+                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Alert(title: Text("Alert"))/*@END_MENU_TOKEN@*/
+            })
             .toolbar {
                 Button(action: sendPost, label: {
                     Text("Post")

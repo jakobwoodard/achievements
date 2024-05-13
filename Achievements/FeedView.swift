@@ -13,12 +13,20 @@ struct FeedView: View {
     @ObservedObject var postsGetter = PostsGetter()
     var body: some View {
         NavigationStack {
-            List(postsGetter.posts) { post in
-                // TODO: Make better view for destination of post
-                NavigationLink(destination: PostView(post: post)) {
-                    PostView(post: post)
+            ScrollView {
+                ForEach(postsGetter.posts) { post in
+                    // TODO: Make better view for destination of post
+                    NavigationLink(destination: PostView(post: post)) {
+                        PostView(post: post)
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke()
+                    )
+                    .padding(.horizontal, 3)
                 }
             }
+                
             .navigationTitle("Achievements")
             .toolbar {
                 NavigationLink(destination: PostingView(postText: "")) {
