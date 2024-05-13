@@ -15,7 +15,7 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             FeedView()
                 .tabItem {
-                    Text("Feed")
+                    Label("Feed", systemImage: "circle.square.fill")
                 }
             .tag(0)
             AccountView()
