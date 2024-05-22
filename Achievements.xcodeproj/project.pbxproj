@@ -20,6 +20,9 @@
 		2F4D55FD2BE58AD900773FDC /* PostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4D55FC2BE58AD900773FDC /* PostingView.swift */; };
 		2F4D55FF2BE58B1E00773FDC /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4D55FE2BE58B1E00773FDC /* PostView.swift */; };
 		2FA013C52BF2869E000AB787 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA013C42BF2869E000AB787 /* AccountView.swift */; };
+		2FA013C72BFE6ABF000AB787 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA013C62BFE6ABF000AB787 /* AuthenticationView.swift */; };
+		2FA013CB2BFE6EE6000AB787 /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA013CA2BFE6EE6000AB787 /* SignInEmailView.swift */; };
+		2FA013CD2BFE712E000AB787 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA013CC2BFE712E000AB787 /* AuthenticationManager.swift */; };
 		2FCE0D522BE56BA800162065 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2FCE0D512BE56BA800162065 /* FirebaseAuth */; };
 		2FCE0D542BE56CB200162065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE0D532BE56CB200162065 /* GoogleService-Info.plist */; };
 		2FCE0D562BE56D6F00162065 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2FCE0D552BE56D6F00162065 /* FirebaseFirestore */; };
@@ -62,6 +65,9 @@
 		2F4D55FC2BE58AD900773FDC /* PostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingView.swift; sourceTree = "<group>"; };
 		2F4D55FE2BE58B1E00773FDC /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		2FA013C42BF2869E000AB787 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		2FA013C62BFE6ABF000AB787 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		2FA013CA2BFE6EE6000AB787 /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
+		2FA013CC2BFE712E000AB787 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		2FCE0D532BE56CB200162065 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2FCE0D5B2BE56FFD00162065 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +137,9 @@
 				2F4D55E82BE5837C00773FDC /* Post.swift */,
 				2F4D55FE2BE58B1E00773FDC /* PostView.swift */,
 				2FA013C42BF2869E000AB787 /* AccountView.swift */,
+				2FA013C62BFE6ABF000AB787 /* AuthenticationView.swift */,
+				2FA013CA2BFE6EE6000AB787 /* SignInEmailView.swift */,
+				2FA013CC2BFE712E000AB787 /* AuthenticationManager.swift */,
 			);
 			path = Achievements;
 			sourceTree = "<group>";
@@ -309,12 +318,15 @@
 			files = (
 				2F4D55FF2BE58B1E00773FDC /* PostView.swift in Sources */,
 				2F4D55E72BE5834200773FDC /* FeedView.swift in Sources */,
+				2FA013CD2BFE712E000AB787 /* AuthenticationManager.swift in Sources */,
 				2FCE0D5C2BE56FFD00162065 /* FirebaseManager.swift in Sources */,
+				2FA013C72BFE6ABF000AB787 /* AuthenticationView.swift in Sources */,
 				2F4D55FD2BE58AD900773FDC /* PostingView.swift in Sources */,
 				2FA013C52BF2869E000AB787 /* AccountView.swift in Sources */,
 				2F4D55E32BE5735100773FDC /* ContentView.swift in Sources */,
 				2F4D55E92BE5837C00773FDC /* Post.swift in Sources */,
 				2F40F11E2BE566220008FD73 /* AchievementsApp.swift in Sources */,
+				2FA013CB2BFE6EE6000AB787 /* SignInEmailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

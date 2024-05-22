@@ -7,12 +7,37 @@
 
 import SwiftUI
 
-struct AccountView: View {
-    var body: some View {
-        Text("Username: User1")
+@MainActor
+final class AccountViewModel: ObservableObject {
+    
+    func signOut() throws{
+        try AuthenticationManager.shared.signOut()
     }
 }
 
-#Preview {
-    AccountView()
+struct AccountView: View {
+    
+    @StateObject private var viewModel = AccountViewModel()
+    @Binding var showSignInView: Bool
+    var body: some View {
+        List {
+            Button("Log out") {
+                Task {
+                    do {
+                        try viewModel.signOut()
+                        showSignInView = true
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct AccountView_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountView(showSignInView: .constant(false))
+    }
+    
 }
