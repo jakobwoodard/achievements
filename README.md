@@ -6,4 +6,4 @@ on videogame consoles. In its current state, the Achievements app has the abilit
 and post from the created user. There is also a working feed that has all prior posts in chronological order.
 This project used Swift and SwiftUI for the frontend and Firebase's Firestore as the backend.
 
-![Achievements Screen Shot](https://github.com/[jakobwoodard]/[achievements]/blob/[main]/achievements.jpg?raw=true)
+![Achievements Screen Shot](https://github.com/[jakobwoodard]/[achievements]/blob/[main]/achievements.png?raw=true)
