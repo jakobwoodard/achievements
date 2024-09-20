@@ -7,4 +7,4 @@ and post from the created user. There is also a working feed that has all prior 
 This project used Swift and SwiftUI for the frontend and Firebase's Firestore as the backend.
 
 
-![Achievements Screen Shot](https://github.com/jakobwoodard/achievements/blob/main/AchievementSS.png)
+![Achievements Screen Shot](https://github.com/jakobwoodard/achievements/blob/main/AchievementSS.png=100x200)
