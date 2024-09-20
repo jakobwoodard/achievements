@@ -5,3 +5,5 @@ The basic concept of the app is a social-media app that allows you to send insta
 on videogame consoles. In its current state, the Achievements app has the ability to create an account
 and post from the created user. There is also a working feed that has all prior posts in chronological order.
 This project used Swift and SwiftUI for the frontend and Firebase's Firestore as the backend.
+
+(AchievementsSS.png)
